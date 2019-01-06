@@ -1,0 +1,33 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+<h1>{{ question.question_text }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+{% endfor %}
+
+<p>
+<h3>your age</h3>
+<input type="radio" name="age" value="1" />
+<label> 0~20 </label>
+<input type="radio" name="age" value="2" />
+<label> 21~30 </label>
+<input type="radio" name="age" value="3" />
+<label> 31~40 </label>
+<input type="radio" name="age" value="4" />
+<label> 41~50 </label>
+<input type="radio" name="age" value="5" />
+<label> 51~60 </label>
+<input type="radio" name="age" value="6" />
+<label> 60~ </label>
+</p>
+<input type="submit" value="Vote" />
+</form>
+
+<a href= "{% url 'polls:index' %}">TOP</a>

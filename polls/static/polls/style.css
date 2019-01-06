@@ -1,0 +1,11 @@
+li a {
+    color: green;
+}
+
+.age_list li{
+	display: inline;
+}
+
+body {
+    background: white url("images/background.gif") no-repeat;
+}
